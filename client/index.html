@@ -1,1 +1,133 @@
-<!doctype html><title>placeholder</title>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reinos en Guerra — MMORPG</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/vendor/three/build/three.module.js",
+        "three/addons/": "/vendor/three/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <!-- Lienzo 3D -->
+    <div id="viewport"></div>
+
+    <!-- Pantallas previas al juego (login / personajes / creación) -->
+    <div id="screens" class="screen-layer"></div>
+
+    <!-- HUD dentro del juego -->
+    <div id="hud" class="hidden">
+      <div id="frames">
+        <div id="player-frame" class="unit-frame">
+          <div class="uf-portrait" id="player-portrait">⚔️</div>
+          <div class="uf-body">
+            <div class="uf-title"><span class="uf-name" id="player-name">—</span> <span class="uf-level" id="player-level">1</span></div>
+            <div class="bar hp"><div class="fill" id="player-hp-fill"></div><span class="bar-text" id="player-hp-text"></span></div>
+            <div class="bar mp"><div class="fill" id="player-mp-fill"></div><span class="bar-text" id="player-mp-text"></span></div>
+          </div>
+        </div>
+        <div id="target-frame" class="unit-frame hidden">
+          <div class="uf-portrait" id="target-portrait">🎯</div>
+          <div class="uf-body">
+            <div class="uf-title"><span class="uf-name" id="target-name">—</span> <span class="uf-level" id="target-level"></span></div>
+            <div class="bar hp"><div class="fill" id="target-hp-fill"></div><span class="bar-text" id="target-hp-text"></span></div>
+            <div class="uf-sub" id="target-sub"></div>
+          </div>
+        </div>
+      </div>
+      <div id="buffs"></div>
+
+      <div id="right-panel">
+        <canvas id="minimap" width="220" height="220"></canvas>
+        <div id="minimap-coords">0, 0</div>
+        <div id="top-bar">
+          <div id="zone-name">—</div>
+          <div id="server-stats">—</div>
+        </div>
+        <div id="war-panel">
+          <div class="panel-title">Guerra de reinos</div>
+          <div id="realm-bonus"></div>
+          <div id="structure-list"></div>
+        </div>
+      </div>
+
+      <div id="center-messages"></div>
+      <div id="interact-prompt" class="hidden"></div>
+
+      <div id="cast-bar" class="hidden"><div class="fill" id="cast-fill"></div><span id="cast-text"></span></div>
+
+      <div id="bottom">
+        <div id="action-bar"></div>
+        <div id="xp-bar"><div class="fill" id="xp-fill"></div><span id="xp-text"></span></div>
+      </div>
+
+      <div id="chat">
+        <div id="chat-log"></div>
+        <div id="chat-input-row">
+          <select id="chat-channel" title="Canal">
+            <option value="say">Decir</option>
+            <option value="realm" selected>Reino</option>
+            <option value="global">Global</option>
+          </select>
+          <input id="chat-input" type="text" maxlength="200" placeholder="Enter para escribir · /r reino · /g global · /s decir" autocomplete="off">
+        </div>
+      </div>
+
+      <div id="skill-tooltip" class="hidden"></div>
+
+      <div id="death-overlay" class="overlay hidden">
+        <div class="overlay-box">
+          <h2>Has muerto</h2>
+          <p id="death-text">Un enemigo te ha derrotado.</p>
+          <button id="respawn-btn" disabled>Reaparecer</button>
+          <p class="hint">Reaparecerás en el altar de tu reino.</p>
+        </div>
+      </div>
+
+      <div id="subclass-overlay" class="overlay hidden">
+        <div class="overlay-box wide">
+          <h2>¡Nivel 10! Elige tu especialización</h2>
+          <p>Esta decisión es permanente.</p>
+          <div id="subclass-options" class="card-row"></div>
+        </div>
+      </div>
+
+      <div id="world-map-overlay" class="overlay hidden">
+        <div class="overlay-box map-box">
+          <h2>Mapa del mundo <span class="hint">(M para cerrar)</span></h2>
+          <canvas id="world-map" width="720" height="720"></canvas>
+        </div>
+      </div>
+
+      <div id="help-overlay" class="overlay hidden">
+        <div class="overlay-box wide">
+          <h2>Controles <span class="hint">(H para cerrar)</span></h2>
+          <div class="help-grid">
+            <div><b>W A S D / flechas</b> Moverse</div>
+            <div><b>Ratón (arrastrar)</b> Girar cámara · <b>Rueda</b> Zoom</div>
+            <div><b>Clic izquierdo</b> Seleccionar objetivo</div>
+            <div><b>Tab</b> Enemigo más cercano · <b>Esc</b> Deseleccionar</div>
+            <div><b>1-9</b> Habilidades · <b>T</b> Atacar/parar</div>
+            <div><b>F</b> Capturar bandera (puerta destruida)</div>
+            <div><b>Enter</b> Chat · <b>M</b> Mapa · <b>H</b> Ayuda</div>
+            <div><b>R</b> Reaparecer (al morir)</div>
+          </div>
+          <p class="hint">Zonas de reino: seguras (sin PvP). Zona de guerra central: PvP entre reinos, fuertes y castillos capturables. Cada estructura poseída da +2% de daño y XP a todo tu reino. Poseer el castillo de un reino enemigo abre sus fronteras a la invasión.</p>
+          <button id="leave-btn" class="danger">Salir al menú de personajes</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <div id="connection-banner" class="hidden">Conectando con el servidor…</div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
