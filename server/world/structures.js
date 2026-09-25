@@ -71,9 +71,9 @@ export class StructureManager {
   /** Intento de captura por parte de un jugador. Devuelve null si OK o un código de error. */
   startCapture(p, structureId, now) {
     const s = this.states.get(structureId);
-    if (!s) return ERR.NOT_FOUND;
-    if (!p.alive) return ERR.DEAD;
-    if (p.casting) return ERR.CASTING;
+    if (!s) return { code: ERR.NOT_FOUND, message: 'Esa estructura no existe.' };
+    if (!p.alive) return { code: ERR.DEAD, message: 'Estás muerto.' };
+    if (p.casting) return { code: ERR.CASTING, message: 'No puedes capturar mientras lanzas una habilidad.' };
     if (s.owner === p.realm) return { code: ERR.INVALID_TARGET, message: 'Esta estructura ya pertenece a tu reino.' };
     if (!s.door.dead) return { code: ERR.INVALID_TARGET, message: 'La puerta sigue en pie. Derríbala primero.' };
     const f = structureFlagPos(s.def);
@@ -146,9 +146,10 @@ export class StructureManager {
       if (!s.capture) continue;
       const p = this.world.players.get(s.capture.playerId);
       if (!p || !p.alive || !p.capturing || p.capturing.structureId !== s.def.id) {
+        const cancelledId = s.capture.playerId;
         s.capture = null;
         if (p) p.capturing = null;
-        this.world.broadcastAll({ t: S2C.EVENT, e: EV.CAPTURE_CANCEL, structureId: s.def.id, playerId: s.capture?.playerId ?? null, reason: 'capturador caído' });
+        this.world.broadcastAll({ t: S2C.EVENT, e: EV.CAPTURE_CANCEL, structureId: s.def.id, playerId: cancelledId, reason: 'capturador caído' });
         this.broadcastState(s);
         continue;
       }

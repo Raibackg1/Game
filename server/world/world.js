@@ -252,9 +252,7 @@ export class World {
   }
 
   interact(p, structureId, now) {
-    const r = this.structures.startCapture(p, structureId, now);
-    if (r === null) return null;
-    return typeof r === 'string' ? { code: r, message: r } : r;
+    return this.structures.startCapture(p, structureId, now);
   }
 
   respawn(p, now) {
