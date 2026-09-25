@@ -86,8 +86,8 @@ export const CLASSES = {
 
   caballero:  { id: 'caballero',  name: 'Caballero',  base: 'guerrero', tier: 1, role: 'Tanque',          primary: 'str', hpPerLevel: 17, mpPerLevel: 3, baseArmor: 18, attackRange: 3.0, attackSpeed: 1.9, weapon: 'espada', description: 'Defensor del reino. Escudos, provocación y auras.' },
   barbaro:    { id: 'barbaro',    name: 'Bárbaro',    base: 'guerrero', tier: 1, role: 'Daño melé',       primary: 'str', hpPerLevel: 13, mpPerLevel: 3, baseArmor: 10, attackRange: 3.2, attackSpeed: 1.6, weapon: 'hacha',  description: 'Furia pura. El mayor daño cuerpo a cuerpo.' },
-  cazador:    { id: 'cazador',    name: 'Cazador',    base: 'arquero',  tier: 1, role: 'Control',         primary: 'dex', hpPerLevel: 11, mpPerLevel: 4, baseArmor: 8,  attackRange: 24.0, attackSpeed: 1.8, weapon: 'arco',   description: 'Velocidad, raíces y disparos certeros.' },
-  tirador:    { id: 'tirador',    name: 'Tirador',    base: 'arquero',  tier: 1, role: 'Daño a distancia', primary: 'dex', hpPerLevel: 9,  mpPerLevel: 5, baseArmor: 6,  attackRange: 28.0, attackSpeed: 2.1, weapon: 'arco',   description: 'Alcance extremo y disparos devastadores.' },
+  cazador:    { id: 'cazador',    name: 'Cazador',    base: 'arquero',  tier: 1, role: 'Control',         primary: 'dex', hpPerLevel: 12, mpPerLevel: 4, baseArmor: 8,  attackRange: 24.0, attackSpeed: 1.8, weapon: 'arco',   description: 'Velocidad, raíces y disparos certeros.' },
+  tirador:    { id: 'tirador',    name: 'Tirador',    base: 'arquero',  tier: 1, role: 'Daño a distancia', primary: 'dex', hpPerLevel: 11, mpPerLevel: 5, baseArmor: 7,  attackRange: 28.0, attackSpeed: 2.1, weapon: 'arco',   description: 'Alcance extremo y disparos devastadores.' },
   conjurador: { id: 'conjurador', name: 'Conjurador', base: 'mago',     tier: 1, role: 'Sanador',         primary: 'int', hpPerLevel: 9,  mpPerLevel: 9, baseArmor: 5,  attackRange: 20.0, attackSpeed: 2.2, weapon: 'baston', description: 'Curaciones y bendiciones. El corazón de todo ejército.' },
   brujo:      { id: 'brujo',      name: 'Brujo',      base: 'mago',     tier: 1, role: 'Daño mágico',     primary: 'int', hpPerLevel: 7,  mpPerLevel: 9, baseArmor: 3,  attackRange: 22.0, attackSpeed: 2.3, weapon: 'baston', description: 'Maldiciones, drenajes y meteoros.' },
 };
@@ -136,9 +136,9 @@ export const SKILLS = {
   flecha_paralizante: { id: 'flecha_paralizante', name: 'Flecha Paralizante', cls: 'cazador', level: 14, mana: 22, cooldown: 25, range: 24, castTime: 0, target: 'enemy', power: 'ranged', icon: '🕸️', effects: [{ kind: 'root', duration: 4 }, { kind: 'damage', mult: 0.6, flat: 4 }], description: 'Inmoviliza 4 s.' },
   disparo_certero:  { id: 'disparo_certero',  name: 'Disparo Certero',     cls: 'cazador',    level: 20, mana: 28, cooldown: 15, range: 24,  castTime: 0,   target: 'enemy', power: 'ranged', icon: '💥', effects: [{ kind: 'damage', mult: 1.6, flat: 12, guaranteedCrit: true }], description: 'Crítico garantizado.' },
   // --- Tirador ---
-  tiro_largo:       { id: 'tiro_largo',       name: 'Tiro Largo',          cls: 'tirador',    level: 10, mana: 25, cooldown: 10, range: 36,  castTime: 2,   target: 'enemy', power: 'ranged', icon: '🔭', effects: [{ kind: 'damage', mult: 2.0, flat: 12 }], description: 'Alcance enorme, 2 s de preparación.' },
+  tiro_largo:       { id: 'tiro_largo',       name: 'Tiro Largo',          cls: 'tirador',    level: 10, mana: 25, cooldown: 10, range: 36,  castTime: 2,   target: 'enemy', power: 'ranged', icon: '🔭', effects: [{ kind: 'damage', mult: 2.4, flat: 14 }], description: 'Alcance enorme, 2 s de preparación.' },
   lluvia_flechas:   { id: 'lluvia_flechas',   name: 'Lluvia de Flechas',   cls: 'tirador',    level: 14, mana: 35, cooldown: 20, range: 28,  castTime: 1.5, target: 'enemy', power: 'ranged', icon: '🌧️', effects: [{ kind: 'damage', mult: 1.2, flat: 8, aoe: 8 }], description: 'Daño en área.' },
-  disparo_letal:    { id: 'disparo_letal',    name: 'Disparo Letal',       cls: 'tirador',    level: 20, mana: 45, cooldown: 25, range: 30,  castTime: 3,   target: 'enemy', power: 'ranged', icon: '☄️', effects: [{ kind: 'damage', mult: 2.8, flat: 20 }], description: 'El disparo más potente del juego.' },
+  disparo_letal:    { id: 'disparo_letal',    name: 'Disparo Letal',       cls: 'tirador',    level: 20, mana: 45, cooldown: 25, range: 30,  castTime: 3,   target: 'enemy', power: 'ranged', icon: '☄️', effects: [{ kind: 'damage', mult: 3.3, flat: 24 }], description: 'El disparo más potente del juego.' },
   // --- Mago (base) ---
   descarga_arcana:  { id: 'descarga_arcana',  name: 'Descarga Arcana',     cls: 'mago',       level: 1,  mana: 12, cooldown: 2.5, range: 20, castTime: 1,   target: 'enemy', power: 'spell',  icon: '🔮', effects: [{ kind: 'damage', mult: 1.3, flat: 8 }], description: 'Proyectil arcano.' },
   escudo_mana:      { id: 'escudo_mana',      name: 'Escudo de Maná',      cls: 'mago',       level: 4,  mana: 25, cooldown: 25, range: 0,   castTime: 0,   target: 'self',  power: 'spell',  icon: '🔵', effects: [{ kind: 'shield', mult: 1.5, flat: 20, duration: 15 }], description: 'Absorbe daño durante 15 s.' },
@@ -258,8 +258,8 @@ export function mobStats(typeId, level) {
   const eliteMult = t.elite ? 12 : 1;
   const guardMult = t.guard ? 2.5 : 1;
   return {
-    maxHp: Math.floor((30 + level * 22) * eliteMult * guardMult),
-    damage: Math.floor((4 + level * 2.2) * (t.elite ? 2.5 : 1)),
+    maxHp: Math.floor((55 + level * 46) * eliteMult * guardMult),
+    damage: Math.floor((7 + level * 3.6) * (t.elite ? 2.5 : 1)),
     armor: Math.floor(level * 1.5),
     attackSpeed: t.elite ? 1.5 : 2.0,
     attackRange: t.shape === 'dragon' ? 6 : 2.5,

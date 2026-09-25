@@ -11,7 +11,8 @@
     "start": "node --no-warnings=ExperimentalWarning server/index.js",
     "dev": "nodemon --watch server --watch shared --exec \"node --no-warnings=ExperimentalWarning server/index.js\"",
     "test": "node --no-warnings=ExperimentalWarning --test \"tests/**/*.test.js\"",
-    "e2e:browser": "node --no-warnings=ExperimentalWarning scripts/e2e-browser.mjs"
+    "e2e:browser": "node --no-warnings=ExperimentalWarning scripts/e2e-browser.mjs",
+    "balance": "node --no-warnings=ExperimentalWarning scripts/balance-sim.mjs"
   },
   "dependencies": {
     "three": "^0.170.0",

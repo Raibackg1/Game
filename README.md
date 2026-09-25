@@ -41,8 +41,9 @@ Variables de entorno (todas opcionales):
 ## Pruebas
 
 ```bash
-npm test               # 22 pruebas: unitarias, integración del mundo y extremo a extremo por WebSocket
+npm test               # 24 pruebas: unitarias, integración del mundo, guerra entre reinos y extremo a extremo por WebSocket
 npm run e2e:browser    # prueba en Chromium headless (Playwright): registro → personaje → mundo → combate
+npm run balance        # simulación de balance: cada clase contra los monstruos de su nivel (tiempo y vida restante)
 ```
 
 ## El juego
