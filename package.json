@@ -1,0 +1,20 @@
+{
+  "name": "reinos-en-guerra",
+  "version": "0.1.0",
+  "description": "MMORPG de guerra entre reinos (estilo Regnum Online / WoW): 3 reinos, 9 razas, 3 clases base + 6 subclases, niveles, PvE, PvP y captura de fuertes y castillos. Servidor autoritativo Node.js + cliente 3D Three.js.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node --no-warnings=ExperimentalWarning server/index.js",
+    "dev": "nodemon --watch server --watch shared --exec \"node --no-warnings=ExperimentalWarning server/index.js\"",
+    "test": "node --no-warnings=ExperimentalWarning --test \"tests/**/*.test.js\"",
+    "e2e:browser": "node --no-warnings=ExperimentalWarning scripts/e2e-browser.mjs"
+  },
+  "dependencies": {
+    "three": "^0.170.0",
+    "ws": "^8.18.0"
+  }
+}
